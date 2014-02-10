@@ -55,19 +55,17 @@ Usage
 In your view, include files with `staticVersion` view helper:
 
 ```php
-<?php 
-$this->staticVersion($relativePathUrl); 
-?>
+<?php $this->staticVersion($relativePathUrl); ?>
 ```
 	
 For example, like this:
 
-	```php
-	<?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/gif', 'href' => $this->staticVersion($this->basePath() . '/favicon.gif')))
-		->appendStylesheet($this->staticVersion($this->basePath() . '/css/mycssfile.css'));
-	?>
-	<?php echo $this->headScript()->appendFile($this->staticVersion($this->basePath() . '/js/scripts.js')); ?>
-	```
+```php
+<?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/gif', 'href' => $this->staticVersion($this->basePath() . '/favicon.gif')))
+	->appendStylesheet($this->staticVersion($this->basePath() . '/css/mycssfile.css'));
+?>
+<?php echo $this->headScript()->appendFile($this->staticVersion($this->basePath() . '/js/scripts.js')); ?>
+```
 
 Defaults
 --------
@@ -80,10 +78,10 @@ For this to be possible,  *BitStaticFileVersioning* has to be able to map your U
 
 So, if you call the view helper with:
 
-	```php
-	$this->staticVersion('/css/mycssfile.css');
-	$this->staticVersion('/assets/js/script.css');
-	```
+```php
+$this->staticVersion('/css/mycssfile.css');
+$this->staticVersion('/assets/js/script.css');
+```
 
 and your application has the standard skeleton organization in e.g.:
 
@@ -102,36 +100,36 @@ Configuration
 
 You can override this default behaviour by adding a custom callable to your config:
 
-	```php
-    'static_file_versioning' => array(
-        'resolvers' => array(
-        	/**
-        	 * @var string $input	This is the URL from the view (e.g. /css/mycssfile.css)
-        	 * @var ServiceLocator $serviceLocator
-        	 */
-            'default' => function($input, $serviceLocator) {
-            		// Code to resolve a file to filesystem path, e.g.:
-            		$file = '/var/www/storage/' . $input;
-                    
-                    // Code to determine version:
-                    $version = filemtime($file);
-                    // or: 
-                    $version = md5_file($file);
+```php
+'static_file_versioning' => array(
+	'resolvers' => array(
+		/**
+		 * @var string $input	This is the URL from the view (e.g. /css/mycssfile.css)
+		 * @var ServiceLocator $serviceLocator
+		 */
+		'default' => function($input, $serviceLocator) {
+				// Code to resolve a file to filesystem path, e.g.:
+				$file = '/var/www/storage/' . $input;
+				
+				// Code to determine version:
+				$version = filemtime($file);
+				// or: 
+				$version = md5_file($file);
 
-                    return $version;        
-                }
-        ),
-    ),
-    ```
+				return $version;        
+			}
+	),
+),
+```
 
 Advanced configuration & usage
 ------------------------------
 
 View helper has several parameters:
 
-	```php
-	<?php $this->staticVersion(RELATIVE_PATH_URL, RESOLVER, PREFIX, SUFFIX); ?>
-	```
+```php
+<?php $this->staticVersion(RELATIVE_PATH_URL, RESOLVER, PREFIX, SUFFIX); ?>
+```
 	
 If `RESOLVER` is specified, you can use a different resolver than the 'default' one (you can have as many as you want defined).
 PREFIX is added before the version number, by default: `?v=`
@@ -139,9 +137,9 @@ SUFFIX is added after the version number, by default it is blank.
 
 You can set default prefix and suffix in your module configuration, like so:
 
-	```php
-    'static_file_versioning' => array(
-    	'prefix' => 'my prefix',
-    	'suffix' => 'my suffix'
-    ),
-    ```
+```php
+'static_file_versioning' => array(
+	'prefix' => 'my prefix',
+	'suffix' => 'my suffix'
+),
+```
