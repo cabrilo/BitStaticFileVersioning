@@ -105,7 +105,7 @@ You can override this default behaviour by adding a custom callable to your conf
 	'resolvers' => array(
 		/**
 		 * @var string $input	This is the URL from the view (e.g. /css/mycssfile.css)
-		 * @var ServiceLocator $serviceLocator
+		 * @var \Zend\ServiceManager\ServiceManager $serviceLocator
 		 */
 		'default' => function($input, $serviceLocator) {
 				// Code to resolve a file to filesystem path, e.g.:
