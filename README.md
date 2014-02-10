@@ -54,9 +54,11 @@ Usage
 
 In your view, include files with `staticVersion` view helper:
 
-	```php
-	<?php $this->staticVersion($relativePathUrl); ?>
-	```
+    ```php
+	<?php 
+	$this->staticVersion($relativePathUrl); 
+	?>
+    ```
 	
 For example, like this:
 
