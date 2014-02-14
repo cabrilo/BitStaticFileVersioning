@@ -14,7 +14,13 @@ class StaticVersion extends AbstractHelper
     protected $serviceLocator;
 
     /**
+     * @param string $path      A relative path which resolver will use to map to filesystem file.
+     * @param string $resolver  Name of callable, specified in configuration, to resolve modification date
+     * @param string $prefix
+     * @param string $suffix
+     *
      * @return string
+     * @throws Exception
      */
     public function __invoke($path, $resolver = 'default', $prefix = '?v=', $suffix = '')
     {
