@@ -1,6 +1,6 @@
 <?php
 
-namespace BitStaticFileVersioning\Helper;
+namespace BitStaticFileVersioning\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
 use Zend\ServiceManager\ServiceManager;

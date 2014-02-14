@@ -22,7 +22,7 @@ return array(
         'factories' => array(
             'staticVersion' => function($helperPluginManager) {
                     $serviceLocator = $helperPluginManager->getServiceLocator();
-                    $viewHelper = new \BitStaticFileVersioning\Helper\StaticVersion();
+                    $viewHelper = new \BitStaticFileVersioning\View\Helper\StaticVersion();
                     $viewHelper->setServiceLocator($serviceLocator);
                     return $viewHelper;
                 }
