@@ -18,6 +18,14 @@ return array(
                 }
         ),
     ),
+    'service_manager' => array(
+        'factories' => array(
+            'BitStaticFileVersioning\Options\ModuleOptions' => function ($sl) {
+                    $config = $sl->get('Config');
+                    return new \BitStaticFileVersioning\Options\ModuleOptions($config['static_file_versioning']);
+                }
+        ),
+    ),
     'view_helpers' => array(
         'factories' => array(
             'staticVersion' => function($helperPluginManager) {

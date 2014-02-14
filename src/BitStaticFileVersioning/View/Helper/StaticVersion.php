@@ -26,17 +26,14 @@ class StaticVersion extends AbstractHelper
     {
         $cfg = $this->serviceLocator->get('Config');
         
-        foreach (array('prefix', 'suffix') as $var) {
-            if (!${$var}) {
-                ${$var} = (isset($cfg['static_file_versioning']) && isset($cfg['static_file_versioning'][$var]))
-                    ? $cfg['static_file_versioning'][$var]
-                    : '';
-            }
-        }
+        $options = $this->serviceLocator->get('BitStaticFileVersioning\Options\ModuleOptions');
+                
+        if (!$prefix) $prefix = $options->getPrefix();
+        if (!$suffix) $suffix = $options->getSuffix();
 
-        $resolverFunction = $cfg['static_file_versioning']['resolvers'][$resolver];
+        $resolverFunction = $options->getResolver($resolver);
         if (!is_callable($resolverFunction)) {
-            throw new Exception('Invalid resolver function');
+            throw new \InvalidArgumentException('Invalid resolver function');
         }
         
         $version = call_user_func($resolverFunction, $path, $this->serviceLocator);
