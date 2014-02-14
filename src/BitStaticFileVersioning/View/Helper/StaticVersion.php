@@ -23,9 +23,7 @@ class StaticVersion extends AbstractHelper
      * @throws Exception
      */
     public function __invoke($path, $resolver = 'default', $prefix = '?v=', $suffix = '')
-    {
-        $cfg = $this->serviceLocator->get('Config');
-        
+    {        
         $options = $this->serviceLocator->get('BitStaticFileVersioning\Options\ModuleOptions');
                 
         if (!$prefix) $prefix = $options->getPrefix();
