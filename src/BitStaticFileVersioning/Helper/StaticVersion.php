@@ -14,7 +14,7 @@ class StaticVersion extends AbstractHelper
     protected $serviceLocator;
 
     /**
-     * @return bool
+     * @return string
      */
     public function __invoke($path, $resolver = 'default', $prefix = '?v=', $suffix = '')
     {
